@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Son Nova — Equestrian Centre Mallorca</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sand: #F5F0E8;
+            --sand-dark: #E8DFD0;
+            --olive: #6B7B3A;
+            --olive-dark: #4A5628;
+            --navy: #1B2A3D;
+            --navy-light: #2C4158;
+            --terracotta: #C17B4A;
+            --terracotta-light: #D4956A;
+            --cream: #FDFAF5;
+            --white: #FFFFFF;
+            --gold: #C9A96E;
+            --gold-light: #DFC89A;
+            --text: #2E2E2E;
+            --text-light: #6B6B6B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.2rem 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(27, 42, 61, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 4%;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            font-weight: 300;
+            font-style: italic;
+            text-transform: none;
+            letter-spacing: 0;
+            display: block;
+            font-size: 0.7rem;
+            opacity: 0.8;
+            margin-top: -2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--terracotta) !important;
+            color: var(--white) !important;
+            padding: 0.6rem 1.4rem !important;
+            border-radius: 3px;
+            font-size: 0.72rem !important;
+            letter-spacing: 1.5px !important;
+            transition: background 0.3s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--terracotta-light) !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: 0.3s;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            background: linear-gradient(135deg, rgba(27, 42, 61, 0.5), rgba(27, 42, 61, 0.25)),
+                        url('images/hero.jpg') center/cover no-repeat;
+            background-color: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to bottom, rgba(27, 42, 61, 0.3) 0%, transparent 40%, transparent 60%, rgba(27, 42, 61, 0.7) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            border: 1px solid rgba(201, 169, 110, 0.6);
+            color: var(--gold-light);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            color: var(--white);
+            font-weight: 300;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 em {
+            font-weight: 600;
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        .hero p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1.8;
+            max-width: 550px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--terracotta);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--terracotta-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(193, 123, 74, 0.3);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.4);
+            color: var(--white);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 20px;
+            height: 20px;
+            stroke: rgba(255,255,255,0.5);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ── Section Styling ── */
+        section {
+            padding: 7rem 4%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* ── About / Intro ── */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-image {
+            aspect-ratio: 4/5;
+            background: url('images/about.jpg') center/cover no-repeat;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text h2 em {
+            font-style: italic;
+            color: var(--terracotta);
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            line-height: 1.9;
+            font-weight: 300;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--sand-dark);
+        }
+
+        .stat-item h3 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: var(--terracotta);
+        }
+
+        .stat-item p {
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+            font-weight: 400;
+        }
+
+        /* ── Services ── */
+        .services {
+            background: var(--cream);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 4px;
+            transition: all 0.4s;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--terracotta);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border-color: var(--sand-dark);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--sand);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: background 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--terracotta);
+        }
+
+        .service-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--terracotta);
+            fill: none;
+            stroke-width: 1.5;
+            transition: stroke 0.3s;
+        }
+
+        .service-card:hover .service-icon svg {
+            stroke: var(--white);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.88rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .service-card .learn-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--terracotta);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            margin-top: 1.5rem;
+            font-weight: 500;
+            transition: gap 0.3s;
+        }
+
+        .service-card:hover .learn-more {
+            gap: 0.8rem;
+        }
+
+        /* ── Summer Camp ── */
+        .summer-camp {
+            background: linear-gradient(rgba(27, 42, 61, 0.88), rgba(27, 42, 61, 0.92)),
+                        url('images/camp.jpg') center/cover no-repeat;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summer-camp::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 0% 100%, rgba(193,123,74,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 0%, rgba(107,123,58,0.08) 0%, transparent 50%);
+        }
+
+        .summer-camp .section-label {
+            color: var(--gold);
+        }
+
+        .summer-camp .section-header h2 {
+            color: var(--white);
+        }
+
+        .summer-camp .section-header p {
+            color: rgba(255,255,255,0.65);
+        }
+
+        .camp-content {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .camp-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .camp-feature {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .camp-feature:hover {
+            border-color: rgba(201, 169, 110, 0.3);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .camp-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .camp-feature h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: var(--gold-light);
+        }
+
+        .camp-feature p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.88rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .camp-cta {
+            text-align: center;
+            margin-top: 3.5rem;
+            position: relative;
+        }
+
+        .camp-cta .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .camp-cta .btn-primary:hover {
+            background: var(--gold-light);
+        }
+
+        /* ── Gallery Mosaic ── */
+        .gallery {
+            background: var(--white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 250px);
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            background: var(--sand);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item:nth-child(1) { grid-column: span 2; }
+        .gallery-item:nth-child(4) { grid-column: span 2; }
+
+        .gallery-item img {
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* ── Testimonials ── */
+        .testimonials {
+            background: var(--sand);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '\201C';
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            color: var(--terracotta);
+            opacity: 0.15;
+            position: absolute;
+            top: 0.5rem;
+            left: 1.5rem;
+            line-height: 1;
+        }
+
+        .testimonial-card p {
+            color: var(--text-light);
+            font-size: 0.92rem;
+            line-height: 1.8;
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            background: var(--sand);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            color: var(--terracotta);
+            font-size: 1.1rem;
+        }
+
+        .testimonial-name {
+            font-weight: 500;
+            font-size: 0.88rem;
+            color: var(--navy);
+        }
+
+        .testimonial-role {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 300;
+        }
+
+        .stars {
+            color: var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        /* ── Contact ── */
+        .contact {
+            background: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-details {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .contact-details li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        .contact-details svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--terracotta);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--sand-dark);
+            border-radius: 3px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 300;
+            color: var(--text);
+            background: var(--cream);
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .contact-form input:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            border-color: var(--terracotta);
+        }
+
+        .contact-form textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        .contact-form .btn {
+            align-self: flex-start;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.6);
+            padding: 4rem 4% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            line-height: 1.8;
+            font-weight: 300;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-col a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 300;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            font-weight: 300;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            border-color: var(--gold);
+            background: rgba(201, 169, 110, 0.1);
+        }
+
+        .social-links svg {
+            width: 14px;
+            height: 14px;
+            fill: rgba(255,255,255,0.5);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .camp-features { grid-template-columns: repeat(2, 1fr); }
+            .camp-features .camp-feature:last-child {
+                grid-column: span 2;
+                max-width: 50%;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--navy);
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                z-index: 999;
+            }
+
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .camp-features { grid-template-columns: 1fr; }
+            .camp-features .camp-feature:last-child {
+                grid-column: span 1;
+                max-width: 100%;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(5, 200px);
+            }
+            .gallery-item:nth-child(1) { grid-column: span 2; }
+            .gallery-item:nth-child(4) { grid-column: span 1; }
+            .testimonials-grid { grid-template-columns: 1fr; max-width: 500px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+
+            section { padding: 5rem 5%; }
+        }
+
+        /* ── Animations ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.15s; }
+        .fade-in-delay-2 { transition-delay: 0.3s; }
+        .fade-in-delay-3 { transition-delay: 0.45s; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">
+            Son Nova
+            <span>Equestrian Centre &middot; Mallorca</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#summer">Summer Camp</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact" class="nav-cta">Book Now</a></li>
+        </ul>
+        <div class="mobile-toggle" id="mobileToggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Son Nova &middot; Mallorca</div>
+            <h1>Where the <em>Mediterranean</em> meets the Art of Riding</h1>
+            <p>A new equestrian home on the island. Training, livery, and unforgettable experiences — surrounded by the timeless beauty of Mallorca.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">Discover Our World</a>
+                <a href="#contact" class="btn btn-outline">Get in Touch</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-image fade-in"></div>
+            <div class="about-text fade-in fade-in-delay-1">
+                <span class="section-label">Our Vision</span>
+                <h2>A new home for horses <em>&amp; riders</em></h2>
+                <p>Son Nova is more than a riding school — it's a place where passion for horses meets the tranquility of the Mallorcan landscape. Nestled in the island's heartland, our centre offers quality facilities in an atmosphere of genuine warmth and dedication.</p>
+                <p>Whether you're a young beginner taking your first steps in the saddle, a competitive rider preparing for your next tournament, or simply looking for a trusted home for your horse — you'll find it here.</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <h3>20+</h3>
+                        <p>School Horses</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>2026</h3>
+                        <p>Established</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>40+</h3>
+                        <p>Stables Available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="section-header fade-in">
+            <span class="section-label">What We Offer</span>
+            <h2>Four Pillars of Equestrian Excellence</h2>
+            <p>From first-time riders to seasoned competitors, our programmes are designed to nurture every equestrian journey.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-5h2v5h6v-8h3L12 3z"/></svg>
+                </div>
+                <h3>Livery &amp; Stabling</h3>
+                <p>Premium stables with individual paddocks, daily turnout, and expert care. Your horse deserves a home as beautiful as the island itself.</p>
+                <a href="#contact" class="learn-more">Enquire &rarr;</a>
+            </div>
+
+            <div class="service-card fade-in fade-in-delay-1">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <h3>Summer Courses</h3>
+                <p>Unforgettable riding camps for children and teens. Learn with our gentle school horses while making friends and memories under the Mallorcan sun.</p>
+                <a href="#summer" class="learn-more">Learn more &rarr;</a>
+            </div>
+
+            <div class="service-card fade-in fade-in-delay-2">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M8 21l4-9 4 9M12 3v9M2 15h20"/><circle cx="12" cy="5" r="2"/></svg>
+                </div>
+                <h3>Competition Training</h3>
+                <p>Structured programmes in dressage, show jumping, and cross-country. Our experienced trainers prepare riders for regional and national competitions.</p>
+                <a href="#contact" class="learn-more">Enquire &rarr;</a>
+            </div>
+
+            <div class="service-card fade-in fade-in-delay-3">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+                <h3>Horse Breeding</h3>
+                <p>A carefully curated breeding programme focused on temperament, conformation, and athleticism. We raise horses born for partnership.</p>
+                <a href="#contact" class="learn-more">Enquire &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summer Camp -->
+    <section class="summer-camp" id="summer">
+        <div class="section-header fade-in">
+            <span class="section-label">Summer 2026</span>
+            <h2>Kids Riding Camp</h2>
+            <p>A magical summer experience where children discover the joy of horses, the thrill of riding, and the beauty of Mallorca — all in one unforgettable adventure.</p>
+        </div>
+
+        <div class="camp-content">
+            <div class="camp-features">
+                <div class="camp-feature fade-in">
+                    <div class="camp-feature-icon">&#127774;</div>
+                    <h3>Weekly Programmes</h3>
+                    <p>Monday to Friday sessions from June through September. Half-day and full-day options available for ages 6 to 16.</p>
+                </div>
+                <div class="camp-feature fade-in fade-in-delay-1">
+                    <div class="camp-feature-icon">&#127943;</div>
+                    <h3>Learn &amp; Ride</h3>
+                    <p>From stable management to riding technique, children gain confidence and skills with our experienced, patient school horses.</p>
+                </div>
+                <div class="camp-feature fade-in fade-in-delay-2">
+                    <div class="camp-feature-icon">&#127754;</div>
+                    <h3>Beach &amp; Nature</h3>
+                    <p>Enjoy trail rides through olive groves and along the coast. Exploring Mallorca on horseback is part of the Son Nova experience.</p>
+                </div>
+            </div>
+
+            <div class="camp-cta fade-in">
+                <a href="#contact" class="btn btn-primary">Reserve a Spot for Summer 2026</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery" id="gallery">
+        <div class="section-header fade-in">
+            <span class="section-label">Gallery</span>
+            <h2>Life at Son Nova</h2>
+            <p>Moments captured across seasons — from golden morning rides to the quiet beauty of our Mallorcan estate.</p>
+        </div>
+
+        <div class="gallery-grid fade-in">
+            <div class="gallery-item">
+                <img src="images/gallery-beach.jpg" alt="Beach ride along the Mediterranean" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="gallery-item">
+                <img src="images/gallery-jumping.jpg" alt="Show jumping training" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="gallery-item">
+                <img src="images/gallery-dressage.jpg" alt="Dressage training" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="gallery-item">
+                <img src="images/gallery-mare-foal.jpg" alt="Mare and foal" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="gallery-item">
+                <img src="images/gallery-foal.jpg" alt="Foal playing in the paddock" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="gallery-item">
+                <img src="images/gallery-portrait.jpg" alt="Horse portrait" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="gallery-item">
+                <img src="images/gallery-kids-trail.jpg" alt="Kids trail ride through the countryside" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="gallery-item">
+                <img src="images/gallery-newborn.jpg" alt="Newborn foal with mare" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="gallery-item">
+                <img src="images/gallery-trail.jpg" alt="Trail riding through olive groves" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-header fade-in">
+            <span class="section-label">Testimonials</span>
+            <h2>What Our Riders Say</h2>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-in">
+                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>My daughter spent two weeks at the summer camp and came home a different child — more confident, more responsible, and absolutely horse-crazy. We're already booking for next year.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">SB</div>
+                    <div>
+                        <div class="testimonial-name">Sarah B.</div>
+                        <div class="testimonial-role">Parent, Hamburg</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card fade-in fade-in-delay-1">
+                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>The care they provide for our horse is exceptional. The facilities are well-maintained, the team is knowledgeable, and the Mallorcan setting is simply unbeatable.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">MR</div>
+                    <div>
+                        <div class="testimonial-name">Marc R.</div>
+                        <div class="testimonial-role">Livery Client, Palma</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card fade-in fade-in-delay-2">
+                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>I've trained at several centres across Spain, but Son Nova stands apart. The competition coaching is top-tier and the atmosphere keeps both horse and rider calm and focused.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">LT</div>
+                    <div>
+                        <div class="testimonial-name">Laura T.</div>
+                        <div class="testimonial-role">Competitive Rider</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="section-header fade-in">
+            <span class="section-label">Get in Touch</span>
+            <h2>Start Your Journey</h2>
+            <p>Whether you have questions about our programmes or are ready to book, we'd love to hear from you.</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <h3>Visit Son Nova</h3>
+                <p>We're located in the heart of Mallorca, surrounded by rolling countryside and ancient olive groves. Come for a visit — the coffee is always ready.</p>
+                <ul class="contact-details">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <div>Mallorca<br>Illes Balears, Spain</div>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                        <div>+34 — coming soon</div>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                        <div>hello@sonnova.es</div>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <div>Open daily: 8:00 — 20:00<br>Office hours: 9:00 — 18:00</div>
+                    </li>
+                </ul>
+            </div>
+
+            <form class="contact-form fade-in fade-in-delay-1" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <input type="text" placeholder="First Name" required>
+                    <input type="text" placeholder="Last Name" required>
+                </div>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number">
+                <select>
+                    <option value="" disabled selected>I'm interested in...</option>
+                    <option>Livery & Stabling</option>
+                    <option>Summer Camp for Kids</option>
+                    <option>Competition Training</option>
+                    <option>Horse Breeding</option>
+                    <option>Visit / General Enquiry</option>
+                </select>
+                <textarea placeholder="Tell us more about what you're looking for..."></textarea>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    Son Nova
+                    <span>Equestrian Centre &middot; Mallorca</span>
+                </a>
+                <p>Where the art of riding meets Mediterranean tranquility. A new equestrian home in the heart of Mallorca.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Livery & Stabling</a></li>
+                    <li><a href="#summer">Summer Camp</a></li>
+                    <li><a href="#services">Competition Training</a></li>
+                    <li><a href="#services">Horse Breeding</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Visit</h4>
+                <ul>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#about">Our Vision</a></li>
+                    <li><a href="#contact">Directions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="#" target="_blank" rel="noopener">WhatsApp</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Son Nova S.L.U. All rights reserved.</span>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+                <a href="#contact" aria-label="Contact">
+                    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            nav.classList.toggle('scrolled', window.scrollY > 80);
+        });
+
+        // Mobile menu
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Scroll-triggered fade-in
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Form submission
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.textContent = 'Message Sent!';
+            btn.style.background = 'var(--olive)';
+            setTimeout(() => {
+                btn.textContent = 'Send Message';
+                btn.style.background = '';
+                e.target.reset();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
